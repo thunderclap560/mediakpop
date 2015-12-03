@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/media',
+	'url' => 'http://localhost/mediakpop',
 
 	/*
 	|--------------------------------------------------------------------------

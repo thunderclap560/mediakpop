@@ -8,8 +8,8 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'admin'						=>		'Admin',
-	'site_settings'				=>		'Site Settings',
+	'admin'						=>		'Quản trị',
+	'site_settings'				=>		'Thiết lập',
 	'website_name'				=>		'Website Name',
 	'website_description'		=>		'Website Description',
 	'logo'						=>		'Logo',

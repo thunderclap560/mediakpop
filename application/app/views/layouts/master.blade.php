@@ -66,7 +66,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand logo" href="{{ URL::to('/') }}"><img src="{{ Config::get('site.uploads_dir') . '/settings/' . $settings->logo }}" style="height:35px; width:auto;" /></a>
+        <a class="navbar-brand logo" href="{{ URL::to('/') }}"><img src="{{ Config::get('site.uploads_dir') . '/settings/' . $settings->logo }}" style="width:130px;margin-top:-7px" /></a>
       
         <div class="mobile-menu-toggle"><i class="fa fa-bars"></i></div>
 

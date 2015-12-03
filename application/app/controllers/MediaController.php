@@ -120,7 +120,7 @@ class MediaController extends BaseController {
 
 				if(isset($input['pic'])){
 					if(isset($input['img_url']) && $input['img_url'] != ''){
-						$input['pic_url'] = ImageHandler::uploadImage($input['img_url'], 'images', Helper::slugify($input['title']), 'url');
+						$input['pic_url'] = ImageHandler::uploadImage($input['img_url'], 'images', Helper::alias_change($input['title']), 'url');
 					} else if(isset($input['pic_url'])){
 
 						$input['pic_url'] = ImageHandler::uploadImage(Input::file('pic_url'), 'images');
@@ -138,7 +138,7 @@ class MediaController extends BaseController {
 							$video_id = Youtubehelper::extractUTubeVidId($input['vid_url']);
 							if(isset($video_id[1])){
 								$img_url = 'http://img.youtube.com/vi/'. $video_id . '/0.jpg';
-								$input['pic_url'] = ImageHandler::uploadImage($img_url, 'images', true, Helper::slugify($input['title']), 'url');
+								$input['pic_url'] = ImageHandler::uploadImage($img_url, 'images', true, Helper::alias_change($input['title']), 'url');
 							} else {
 								unset($input['vid_url']);
 							}
@@ -148,7 +148,7 @@ class MediaController extends BaseController {
 							$link = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$vimeo_id.php"));
 							$image = $link[0]['thumbnail_large'];  
 							
-							$input['pic_url'] = ImageHandler::uploadImage($image, 'images', Helper::slugify($input['title']), 'url');
+							$input['pic_url'] = ImageHandler::uploadImage($image, 'images', Helper::alias_change($input['title']), 'url');
 							$input['vid'] = 1;
 						} elseif(strpos($input['vid_url'], 'vine') > 0){
 							$video_id = explode('/v/', $input['vid_url']);
@@ -160,7 +160,7 @@ class MediaController extends BaseController {
 								preg_match('/property="og:image" content="(.*?)"/', $vine, $matches);
 
 								$image = ($matches[1]) ? $matches[1] : '';
-								$input['pic_url'] = ImageHandler::uploadImage($image, 'images', Helper::slugify($input['title']), 'url');
+								$input['pic_url'] = ImageHandler::uploadImage($image, 'images', Helper::alias_change($input['title']), 'url');
 							} else {
 								unset($input['vid_url']);
 							}
@@ -184,7 +184,7 @@ class MediaController extends BaseController {
 
 				$input['title'] = htmlspecialchars(stripslashes($input['title']));
 
-				$input['slug'] = Helper::slugify($input['title']);
+				$input['slug'] = Helper::alias_change($input['title']);
 
 				if(isset($input['description'])){
 					$input['description'] = htmlspecialchars(stripslashes($input['description']));
