@@ -20,7 +20,7 @@
 				
 					<?php $image = Config::get('site.uploads_dir') . '/images/' . $media->pic_url; ?>
 					<div class="random-item" >
-						<a class="random-img" href="{{ URL::to('media') . '/' . $media->slug }}" style="background-image:url('{{ $image }}'); display:block; min-height:100px; background-size:cover; background-position-y:center"></a>
+						<a class="random-img" href="{{ URL::to('/').'/' .$media->category->slug.'/'. $media->slug.'.html' }}" style="background-image:url('{{ $image }}'); display:block; min-height:100px; background-size:cover; background-position-y:center"></a>
 					</div>
 			@endforeach
 		</div>

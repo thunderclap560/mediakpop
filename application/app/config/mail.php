@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'ninjamediascript@gmail.com', 'name' => 'Ninja Media Script'),
+	'from' => array('address' => 'godobelisk123456@gmail.com', 'name' => 'K-FUN'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => '',
+	'username' => 'support@kfun.net',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => '',
+	'password' => 'thanhdat1030!@#',
 
 	/*
 	|--------------------------------------------------------------------------

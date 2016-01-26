@@ -140,7 +140,7 @@
 		  			?>
 		  		@endif
 
-					<a href="{{ $user_url }}"><img src="{{ $user_avatar }}" class="img-circle user-avatar-medium" /></a><h2 class="item-title"><a href="{{ URL::to('media') . '/' . $item->slug; }}" target="_blank" alt="{{ $item->title }}">{{{ stripslashes($item->title) }}}</a></h2>
+					<a href="{{ $user_url }}"><img src="{{ $user_avatar }}" class="img-circle user-avatar-medium" /></a><h2 class="item-title"><a href="URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html'" target="_blank" alt="{{ $item->title }}">{{{ stripslashes($item->title) }}}</a></h2>
 					<div class="item-details">
 						<p class="details">{{ Lang::get('lang.submitted_by') }}: <a href="{{ $user_url }}">{{ $username}}</a> {{ Lang::get('lang.submitted_on') }} {{ date("F j, Y", strtotime($item->created_at)) }}</p>
 						<p class="home-like-count"><i class="fa {{ $settings->like_icon }}"></i> <span>{{ $item->totalLikes() }}</span></p>
@@ -165,7 +165,7 @@
 							<p class="gif-play"><i class="fa fa-play-circle-o"></i></p>
 						</div>
 					@else
-						<a href="{{ URL::to('media') . '/' . $item->slug; }}" target="_blank" alt="{{ $item->title }}"><img class="single-media" alt="..." src="{{ Config::get('site.uploads_dir') . '/images/' . $item->pic_url }}" /></a>
+						<a href="URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html'" target="_blank" alt="{{ $item->title }}"><img class="single-media" alt="..." src="{{ Config::get('site.uploads_dir') . '/images/' . $item->pic_url }}" /></a>
 					@endif
 				@else
 					
@@ -201,7 +201,7 @@
 
 			<div class="grid_details">
 				<a href="{{ $user_url }}"><img src="{{ $user_avatar }}" class="img-circle user-avatar-medium" /></a>
-				<div class="grid_item_title"><a href="{{ URL::to('media') . '/' . $item->slug; }}" target="_blank">{{ $item->title }}</a></div>
+				<div class="grid_item_title"><a href="URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html'" target="_blank">{{ $item->title }}</a></div>
 				<div class="grid_item_details">
 					
 					<p class="home-like-count"><i class="fa {{ $settings->like_icon }}"></i> <span>{{ $item->totalLikes() }}</span></p>

@@ -18,7 +18,7 @@ class SitemapController extends BaseController {
 		// Display all Media
 		$items = Media::all();
 		foreach($items as $item) {
-		  $sitemap->add(URL::to("media/{$item->slug}"), $item->created_at, '0.9', 'weekly');
+		  $sitemap->add(URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html', $item->created_at, '0.9', 'weekly');
 		}
 
 		$categories = Category::all();

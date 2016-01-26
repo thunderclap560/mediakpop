@@ -168,7 +168,7 @@ Route::post('search', function(){
 
 // **********	SINGLE MEDIA ROUTE ********** //
 
-Route::get('media/{slug}', 'MediaController@show');
+Route::get('{cate}/{slug}.html', 'MediaController@show');
 
 
 // **********	RANDOM MEDIA ROUTE ********** //
@@ -229,6 +229,10 @@ Route::group(array('before' => 'auth'), function()
 // **********	ADMIN ROUTES  ********** //
 
 Route::group(array('before' => 'admin'), function(){
+
+	//Cronjob
+	Route::get('cronjob', 'UserController@cronjob');
+
 	Route::get('admin', 'AdminController@index');
 	Route::get('admin/media', 'AdminController@media');
 	Route::get('admin/media/toggle_active/{id}', 'AdminController@toggle_active');

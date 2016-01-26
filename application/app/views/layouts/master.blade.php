@@ -9,7 +9,9 @@
     @endif
 
     <meta name="viewport" content="initial-scale=1">
-    
+    <meta property="fb:app_id" content="375706065961090" />
+    <meta name="google-site-verification" content="-3KzerAMcVfqUCQqQluftdiZb_8CIwqGR63xmmueWg4" />
+
     <link rel="stylesheet" href="{{ URL::to('/') }}/application/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ URL::to('/') }}/application/assets/css/font-awesome.min.css" />
     <link rel="stylesheet" href="{{ URL::to('/') }}/application/assets/css/animate.min.css" />
@@ -45,11 +47,11 @@
       <meta property="og:type" content="website" />
 
       @if(isset($media->description))
-        <meta property="og:description" content="{{ $media->description }}"/>
+        <meta property="og:description" content="{{ Helper::word_limiter(preg_replace( "/\r|\n/", "", removeTags($media->description),255) ) }}"/>
       @endif
 
       <meta itemprop="name" content="{{ $media->title }}">
-      <meta itemprop="description" content="{{ $media->description }}">
+      <meta itemprop="description" content="{{ Helper::word_limiter(preg_replace( "/\r|\n/", "", removeTags($media->description),255) ) }}">
       <meta itemprop="image" content="{{ Config::get('site.uploads_dir') . '/images/' . $media->pic_url }}">
     @endif
     <?php call_user_func ( Config::get('site.header')); ?>
@@ -329,6 +331,12 @@
 
 
 <?php //call_user_func ( Config::get('site.footer')); ?>
+<?php 
+function removeTags($str) {  
+  $str = preg_replace("#<(.*)/(.*)>#iUs", "", $str);
+  return $str;
+}
 
+?>
 </body>
 </html>

@@ -6,7 +6,7 @@
 
 	<div class="col-sm-12 item animated single-left" data-href="{{ URL::to('media') . '/' . $item->id }}" data-id="{{ $item->id }}">
 					
-	<?php $media_url = URL::to('media') . '/' . $item->slug; ?>
+	<?php $media_url = URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html'; ?>
 
 	<div class="social_container">
 		 <ul class="socialcount socialcount-large" data-url="{{ $media_url }}">

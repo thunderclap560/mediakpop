@@ -28,7 +28,7 @@ class HomeController extends BaseController {
 				if(isset($search)){
 					$media = Media::remember(1)->where('active', '=', 1)->where('title', 'LIKE', '%'.$search.'%')->orderBy('created_at', 'desc')->paginate(Config::get('site.num_results_per_page'));
 				} else {
-					$media = Media::remember(1)->with('media_likes', 'comments')->where('active', '=', 1)->orderBy('created_at', 'desc')->paginate(Config::get('site.num_results_per_page'));
+					$media = Media::remember(1)->with('media_likes', 'comments', 'category')->where('active', '=', 1)->orderBy('created_at', 'desc')->paginate(Config::get('site.num_results_per_page'));
 				}
 
 				$data = array(

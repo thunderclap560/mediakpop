@@ -12,7 +12,7 @@
 	  			?>
 	  		@endif
 
-				<a href="{{ $user_url }}"><img src="{{ $user_avatar }}" class="img-circle user-avatar-medium" /></a><h2 class="item-title"><a href="{{ URL::to('media') . '/' . $item->slug; }}" alt="{{ $item->title }}">{{{ stripslashes($item->title) }}}</a></h2>
+				<a href="{{ $user_url }}"><img src="{{ $user_avatar }}" class="img-circle user-avatar-medium" /></a><h2 class="item-title"><a href="{{ URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html' }}">{{{ stripslashes($item->title) }}}</a></h2>
 				<div class="item-details">
 					<p class="details">{{ Lang::get('lang.submitted_by') }}: <a href="{{ $user_url }}">{{ $username}}</a> {{ Lang::get('lang.submitted_on') }} {{ date("F j, Y", strtotime($item->created_at)) }}</p>
 					<p class="home-like-count"><i class="fa {{ $settings->like_icon }}"></i> <span>{{ count($item->media_likes) }}</span></p>
@@ -34,9 +34,9 @@
 				<h1>NSFW!</h1>
 				<p>This content has been marked as Not Safe For Work, login to view this content</p>
 				<div class="nsfw-login-signup">
-					<a href="{{ URL::to('signin') }}?redirect={{ URL::to('media') . '/' . $item->slug; }}" class="btn btn-color nsfw-login">login</a>
+					<a href="{{ URL::to('signin') }}?redirect={{ URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html' }}" class="btn btn-color nsfw-login">login</a>
 					<span>or</span>
-					<a href="{{ URL::to('signup') }}?redirect={{ URL::to('media') . '/' . $item->slug; }}" class="btn btn-color">signup</a>
+					<a href="{{ URL::to('signup') }}?redirect={{ URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html' }}" class="btn btn-color">signup</a>
 				</div>
 			</div>
 		
@@ -50,7 +50,7 @@
 						<p class="gif-play"><i class="fa fa-play-circle-o"></i></p>
 					</div>
 				@else
-					<a href="{{ URL::to('media') . '/' . $item->slug; }}" alt="{{ $item->title }}"><img class="single-media" alt="..." src="{{ Config::get('site.uploads_dir') . '/images/' . $item->pic_url }}" /></a>
+					<a href="{{ URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html' }}" alt="{{ $item->title }}"><img class="single-media" alt="..." src="{{ Config::get('site.uploads_dir') . '/images/' . $item->pic_url }}" /></a>
 				@endif
 			@else
 				
@@ -87,9 +87,17 @@
 		@endif 
 
 		<!-- end NSFW IF -->
-
-		@if($settings->media_description && isset($item->description) && !empty($item->description))
-			<p class="media_description"><i class="fa fa-quote-left"></i> {{ $item->description }}</p>
+		@if(Route::getCurrentRoute()->getPath() != "/")
+			@if($settings->media_description && isset($item->description) && !empty($item->description))
+				<p class="media_description"><i class="fa fa-quote-left"></i> {{ preg_replace("/<img[^>]+\>/i", "",nl2br($item->description)) }}</p>
+			@endif
+		@else
+			@if($settings->media_description && isset($item->description) && !empty($item->description))
+			<?php 
+			$tmp = Helper::removeTags_entry($item->description);
+			?>
+				<p class="media_description"><i class="fa fa-quote-left"></i> {{  Helper::word_limiter($tmp,50)  }}</p>
+			@endif
 		@endif
 	</div><!-- item-large -->
 

@@ -253,7 +253,7 @@ class MediaController extends BaseController {
 	 * @return Response
 	 */
 
-	public function show($slug)
+	public function show($cate,$slug)
 	{
 		$media = $this->media->where('slug', '=', $slug)->first();
 

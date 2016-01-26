@@ -154,6 +154,77 @@ class UserController extends BaseController{
 
 	}
 
+	/* Cronjob */
+
+	public function checkIssetId($id){
+		$data = Media::where('id_fb' , '=', $id)->first();
+		if($data == NULL){
+			return 0;
+		}else{
+			return 1;
+		}
+	}
+
+	public function cronjob(){
+
+		$root  = dirname(dirname(dirname(dirname( __FILE__ )))).'/content/uploads/images/';
+		$settings = Setting::first();
+		$facebook = new Facebook(array(
+				  'appId'  => $settings->fb_key,
+				  'secret' => $settings->fb_secret_key,
+				  'cookie' => true,
+				  'oauth' => true,
+				));
+		$feed = $facebook->api("/Netizenbuzz.Vtrans/posts?fields=message,full_picture");
+
+		$arrContextOptions=array(
+		    "ssl"=>array(
+		        "verify_peer"=>false,
+		        "verify_peer_name"=>false,
+		    ),
+		); 
+
+		echo '<pre>';
+		print_r($feed['data']);
+		echo '</pre>';
+		echo $this->checkIssetId('358348697584606_972466506172819');
+		exit;
+		foreach($feed['data'] as $k => $v)
+		{
+			if($this->checkIssetId($v['id']) == 0 ){
+				$name_image = 'January2016/'.$v['id'].'.jpg';
+				$image = file_get_contents($v['full_picture'], false, stream_context_create($arrContextOptions)); // sets $image to the contents of the url
+				file_put_contents($root.$name_image, $image);
+
+				$content = $v['message'];
+				$title = explode("\n",$v['message']);
+				
+				$data = new Media;
+				$data->user_id = rand(1,3);;
+				$data->category_id	= 42;
+				$data->title = $title[0];
+				$data->slug = Helper::slugify($title[0]);
+				$data->description = substr($content, 0, strpos($content, "Credit")) ;
+				$data->active  = 1;
+				$data->vid = 0;
+				$data->pic = 1;
+				$data->pic_url = $name_image;
+				$data->vid_url = NULL;
+				$data->link_url = 'http://saokpop.com';
+				$data->tags = NULL;
+				$data->created_at = date('Y-m-d');
+				$data->nsfw = 0 ;
+				$data->views = rand(100,1000);
+				$data->id_fb = $v['id'] ;
+				$data->save();
+			}	
+		}
+		Redirect::to('/');
+
+	}
+
+	/* Cronjob */
+
 	// *********** FACEBOOK OAUTH SIGNIN/SIGNUP ********** //
 
 	public function facebook(){

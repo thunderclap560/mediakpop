@@ -47,7 +47,7 @@
 
 			<div style="clear:both"></div>
 
-			<?php $media_url = URL::to('media') . '/' . $item->slug; ?>
+			<?php $media_url = URL::to('/').'/' .$item->category->slug.'/'. $item->slug.'.html';?>
 		
 			<div id="below_media">
 				<div class="social-icons">
