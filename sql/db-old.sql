@@ -128,7 +128,7 @@ INSERT INTO `comment_votes` (`id`, `user_id`, `comment_id`, `up`, `down`, `creat
 -- Table structure for table `media`
 --
 
-CREATE TABLE IF NOT EXISTS `media` (
+CREATE TABLE IF NOT EXISTS `medias` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL DEFAULT '1',
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `media` (
 -- Dumping data for table `media`
 --
 
-INSERT INTO `media` (`id`, `user_id`, `category_id`, `title`, `slug`, `description`, `active`, `vid`, `pic`, `pic_url`, `vid_url`, `link_url`, `tags`, `created_at`, `updated_at`, `nsfw`, `views`) VALUES
+INSERT INTO `medias` (`id`, `user_id`, `category_id`, `title`, `slug`, `description`, `active`, `vid`, `pic`, `pic_url`, `vid_url`, `link_url`, `tags`, `created_at`, `updated_at`, `nsfw`, `views`) VALUES
 (217, 1, 2, 'Là gì vậy các V.I.P :))', 'la-gi-v-y-cac-v-i-p', NULL, 1, 0, 1, 'May2015/bigbang-1.jpg', '', '', 'BIGBANG', '2015-05-23 21:23:39', '2015-07-23 10:37:14', 0, 66),
 (218, 1, 31, 'Chuyện chỉ dành riêng cho Sone', 'chuy-n-ch-danh-rieng-cho-sone', NULL, 1, 0, 1, 'May2015/SONE.jpg', '', '', 'SNSD', '2015-05-23 21:29:30', '2015-07-23 08:04:27', 0, 49),
 (219, 1, 1, 'Thì ra Na nó không chịu đánh răng :))', 'thi-ra-na-no-khong-ch-u-anh-r-ng', NULL, 1, 0, 1, 'May2015/SONE1.jpg', '', '', 'SNSD', '2015-05-23 21:34:58', '2015-07-23 08:03:03', 0, 37),

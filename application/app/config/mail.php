@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'support@kfun.net',
+	'username' => 'tenten@kfun.net',
 
 	/*
 	|--------------------------------------------------------------------------

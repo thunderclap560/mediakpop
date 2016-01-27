@@ -184,11 +184,7 @@ class UserController extends BaseController{
 		    ),
 		); 
 
-		echo '<pre>';
-		print_r($feed['data']);
-		echo '</pre>';
-		echo $this->checkIssetId('358348697584606_972466506172819');
-		exit;
+		
 		foreach($feed['data'] as $k => $v)
 		{
 			if($this->checkIssetId($v['id']) == 0 ){
@@ -200,7 +196,7 @@ class UserController extends BaseController{
 				$title = explode("\n",$v['message']);
 				
 				$data = new Media;
-				$data->user_id = rand(1,3);;
+				$data->user_id = rand(1,3);
 				$data->category_id	= 42;
 				$data->title = $title[0];
 				$data->slug = Helper::slugify($title[0]);
